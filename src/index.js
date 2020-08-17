@@ -1,6 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
+import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
+import {} from "react-apollo";
+import "semantic-ui-css/semantic.min.css";
 
 import Routes from "./routes";
 import * as serviceWorker from "./serviceWorker";
