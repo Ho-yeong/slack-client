@@ -4,7 +4,15 @@ import { gql, useMutation } from "@apollo/client";
 
 const registerMutation = gql`
   mutation($username: String!, $email: String!, $password: String!) {
-    register(input: { username: $username, email: $email, password: $password })
+    register(
+      input: { username: $username, email: $email, password: $password }
+    ) {
+      ok
+      errors {
+        path
+        message
+      }
+    }
   }
 `;
 
@@ -12,7 +20,12 @@ function RegisterBtn(input) {
   const [newRegister, { loading, error }] = useMutation(registerMutation, {
     onCompleted({ register }) {
       // register : the name of Query in BackEnd
-      alert(`${register}`);
+      console.log(register);
+      const { ok, errors } = register;
+      if (ok) {
+        window.location.href = "/";
+      } else {
+      }
     },
   });
 

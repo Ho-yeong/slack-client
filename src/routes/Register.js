@@ -7,6 +7,7 @@ class Register extends React.Component {
     username: "",
     email: "",
     password: "",
+    errorMsg: "",
   };
 
   onChange = (e) => {
