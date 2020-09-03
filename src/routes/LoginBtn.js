@@ -1,14 +1,13 @@
-/* eslint-disable react/prop-types */
 import React from "react";
 import { Button } from "semantic-ui-react";
 import { gql, useMutation } from "@apollo/client";
 
-const registerMutation = gql`
-  mutation($username: String!, $email: String!, $password: String!) {
-    register(
-      input: { username: $username, email: $email, password: $password }
-    ) {
+const loginMutation = gql`
+  mutation($email: String!, $password: String!) {
+    login(email: $email, password: $password) {
       ok
+      token
+      refreshToken
       errors {
         path
         message
@@ -17,15 +16,15 @@ const registerMutation = gql`
   }
 `;
 
-function RegisterBtn(props) {
+function LoginBtn(props) {
   const err = {};
 
-  const [newRegister, { loading, error }] = useMutation(registerMutation, {
-    onCompleted({ register }) {
+  const [newLogin, { loading, error }] = useMutation(loginMutation, {
+    onCompleted({ login }) {
       // register : the name of Query in BackEnd
-      const { ok, errors } = register;
+      const { ok, errors } = login;
       if (ok) {
-        window.location.href = "/";
+        props.onSubmit(login);
       } else {
         errors.forEach(({ path, message }) => {
           // err[`passwordError`] = "....";
@@ -35,10 +34,9 @@ function RegisterBtn(props) {
       }
     },
   });
-  const regist = () => {
-    newRegister({
+  const login = () => {
+    newLogin({
       variables: {
-        username: props.username,
         email: props.email,
         password: props.password,
       },
@@ -47,7 +45,7 @@ function RegisterBtn(props) {
 
   return (
     <>
-      <Button onClick={regist} disabled={loading}>
+      <Button onClick={login} disabled={loading}>
         Submit
       </Button>
       {error && <p style={{ color: "red" }}>Error :(</p>}
@@ -55,4 +53,4 @@ function RegisterBtn(props) {
   );
 }
 
-export default RegisterBtn;
+export default LoginBtn;

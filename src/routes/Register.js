@@ -49,7 +49,7 @@ class Register extends React.Component {
     if (passwordError) {
       errorList.push(passwordError);
     }
-    // !'' => true, !!' => false
+    // !'' => true, !!'' => false
     return (
       <Container text>
         <Header>Register</Header>
