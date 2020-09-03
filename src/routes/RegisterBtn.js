@@ -16,25 +16,30 @@ const registerMutation = gql`
   }
 `;
 
-function RegisterBtn(input) {
+function RegisterBtn(props) {
+  const err = {};
+
   const [newRegister, { loading, error }] = useMutation(registerMutation, {
     onCompleted({ register }) {
       // register : the name of Query in BackEnd
-      console.log(register);
       const { ok, errors } = register;
       if (ok) {
         window.location.href = "/";
       } else {
+        errors.forEach(({ path, message }) => {
+          // err[`passwordError`] = "....";
+          err[`${path}Error`] = message;
+        });
+        props.onSubmit(err);
       }
     },
   });
-
   const regist = () => {
     newRegister({
       variables: {
-        username: input.username,
-        email: input.email,
-        password: input.password,
+        username: props.username,
+        email: props.email,
+        password: props.password,
       },
     });
   };

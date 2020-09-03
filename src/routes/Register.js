@@ -1,5 +1,5 @@
 import React from "react";
-import { Input, Container, Header } from "semantic-ui-react";
+import { Input, Container, Header, Message } from "semantic-ui-react";
 import RegisterBtn from "./RegisterBtn";
 
 class Register extends React.Component {
@@ -7,7 +7,9 @@ class Register extends React.Component {
     username: "",
     email: "",
     password: "",
-    errorMsg: "",
+    usernameError: "",
+    emailError: "",
+    passwordError: "",
   };
 
   onChange = (e) => {
@@ -16,13 +18,43 @@ class Register extends React.Component {
     this.setState({ [name]: value });
   };
 
-  render() {
-    const { username, email, password } = this.state;
+  onSubmit = (err) => {
+    this.setState({
+      usernameError: "",
+      emailError: "",
+      passwordError: "",
+    });
+    console.log(err);
+    this.setState(err);
+  };
 
+  render() {
+    const {
+      username,
+      email,
+      password,
+      usernameError,
+      emailError,
+      passwordError,
+    } = this.state;
+
+    const errorList = [];
+
+    if (usernameError) {
+      errorList.push(usernameError);
+    }
+    if (emailError) {
+      errorList.push(emailError);
+    }
+    if (passwordError) {
+      errorList.push(passwordError);
+    }
+    // !'' => true, !!' => false
     return (
       <Container text>
         <Header>Register</Header>
         <Input
+          error={!!usernameError}
           onChange={this.onChange}
           name="username"
           value={username}
@@ -30,6 +62,7 @@ class Register extends React.Component {
           fluid
         />
         <Input
+          error={!!emailError}
           onChange={this.onChange}
           name="email"
           value={email}
@@ -37,6 +70,7 @@ class Register extends React.Component {
           fluid
         />
         <Input
+          error={!!passwordError}
           onChange={this.onChange}
           name="password"
           value={password}
@@ -44,7 +78,19 @@ class Register extends React.Component {
           type="password"
           fluid
         />
-        <RegisterBtn username={username} password={password} email={email} />
+        <RegisterBtn
+          username={username}
+          password={password}
+          email={email}
+          onSubmit={this.onSubmit}
+        />
+        {usernameError || emailError || passwordError ? (
+          <Message
+            error
+            header="There was some errors with your submission"
+            list={errorList}
+          />
+        ) : null}
       </Container>
     );
   }
