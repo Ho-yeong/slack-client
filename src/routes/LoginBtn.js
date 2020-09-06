@@ -24,12 +24,14 @@ function LoginBtn(props) {
       // register : the name of Query in BackEnd
       const { ok, errors } = login;
       if (ok) {
+        // eslint-disable-next-line react/prop-types
         props.onSubmit(login);
       } else {
         errors.forEach(({ path, message }) => {
           // err[`passwordError`] = "....";
           err[`${path}Error`] = message;
         });
+        // eslint-disable-next-line react/prop-types
         props.onSubmit(err);
       }
     },
@@ -37,7 +39,9 @@ function LoginBtn(props) {
   const login = () => {
     newLogin({
       variables: {
+        // eslint-disable-next-line react/prop-types
         email: props.email,
+        // eslint-disable-next-line react/prop-types
         password: props.password,
       },
     });

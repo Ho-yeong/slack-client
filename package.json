@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^7.2.1",
     "apollo-client": "^2.6.10",
     "apollo-link-error": "^1.1.13",
+    "babel-eslint": "^10.1.0",
     "graphql": "^15.3.0",
     "mobx": "^5.15.6",
     "mobx-react": "^6.3.0",
@@ -24,7 +25,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint src"
   },
   "eslintConfig": {
     "extends": "react-app"
