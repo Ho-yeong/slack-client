@@ -49,7 +49,7 @@ export default observer(
         <Container text>
           <Header as="h2"> Create a Team </Header>
           <Form>
-            <Form.Field error={!!name}>
+            <Form.Field error={!!nameError}>
               <Input
                 onChange={this.onChange}
                 name="name"
