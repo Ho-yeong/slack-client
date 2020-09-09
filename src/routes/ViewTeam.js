@@ -9,15 +9,9 @@ import SendMessage from "../components/SendMessage";
 
 export default () => (
   <ApplyLayout>
-    <Teams
-      teams={[
-        { id: 1, letter: "S" },
-        { id: 2, letter: "Q" },
-      ]}
-    />
+    <Teams teamName="S" username="User Name" />
     <Channels
       teamName="Team Name"
-      username="User Name"
       channels={[
         { id: 0, name: "yui" },
         { id: 2, name: "random" },

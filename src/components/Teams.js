@@ -2,17 +2,16 @@ import React from "react";
 import styled from "styled-components";
 
 const TeamWrapper = styled.div`
-  grid-column: 1;
-  grid-row: 1 / 4;
-  background-color: #362234;
-  color: #958993;
+  grid-column: 1 /4;
+  grid-row: 1;
+  background-color: #350d36;
+  color: #a695a7;
 `;
 
-const team = ({ id, letter }) => <li key={`team-${id}`}>{letter}</li>;
-
-const Teams = ({ teams }) => (
+const Teams = ({ teamName, username }) => (
   <TeamWrapper>
-    <ul>{teams.map(team)}</ul>
+    <div>{teamName}</div>
+    <div>{username}</div>
   </TeamWrapper>
 );
 
