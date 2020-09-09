@@ -4,7 +4,7 @@ import { gql, useMutation } from "@apollo/client";
 
 const CreateTeamMutation = gql`
   mutation($name: String!) {
-    createTeam(input: { name: $name }) {
+    createTeam(name: $name) {
       ok
       errors {
         path

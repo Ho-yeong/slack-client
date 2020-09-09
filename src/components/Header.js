@@ -12,6 +12,7 @@ const HeaderWrapper = styled.div`
   align-items: center;
   padding-left: 20px;
   font-size: 0.9rem;
+  border-bottom: 1px solid rgba(var(--sk_foreground_low, 29, 28, 29), 0.13);
 `;
 
 export default ({ channelName }) => (

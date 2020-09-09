@@ -7,20 +7,12 @@ import Header from "../components/Header";
 import Messages from "../components/Messages";
 import SendMessage from "../components/SendMessage";
 
+import Sidebar from "../container/Sidebar";
+
 export default () => (
   <ApplyLayout>
-    <Teams teamName="S" username="User Name" />
-    <Channels
-      teamName="Team Name"
-      channels={[
-        { id: 0, name: "yui" },
-        { id: 2, name: "random" },
-      ]}
-      users={[
-        { id: 1, name: "slackbot" },
-        { id: 2, name: "user1" },
-      ]}
-    />
+    <Teams username="User Name" />
+    <Sidebar currentTeamId="5f58db2bbfb3561e282d7d63"></Sidebar>
     <Header channelName="anomynous" />
     <Messages>
       <ul class="message-list">
