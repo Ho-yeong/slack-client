@@ -1,6 +1,7 @@
 import React from "react";
 import { gql, useQuery } from "@apollo/client";
 import Channels from "../components/Channels";
+import Teams from "../components/Teams";
 
 const allTeamsQuery = gql`
   {
@@ -23,9 +24,13 @@ function Sidebar({ currentTeamId }) {
   if (error) return <p>Error :(</p>;
 
   return [
+    <Teams teams={data.allTeams} username="User Name" />,
     <Channels
       teamName="Team Name"
-      channels={data.allTeams}
+      channels={[
+        { id: 1, name: "channel1" },
+        { id: 2, name: "channel2" },
+      ]}
       users={[
         { id: 1, name: "slackbot" },
         { id: 2, name: "user1" },
