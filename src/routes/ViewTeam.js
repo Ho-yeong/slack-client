@@ -1,20 +1,18 @@
 import React from "react";
 
 import ApplyLayout from "../components/ApplyLayout";
-import Channels from "../components/Channels";
-import Teams from "../components/Teams";
 import Header from "../components/Header";
 import Messages from "../components/Messages";
 import SendMessage from "../components/SendMessage";
 
 import Sidebar from "../container/Sidebar";
 
-export default () => (
+const ViewTeam = ({ match: { params } }) => (
   <ApplyLayout>
-    <Sidebar currentTeamId="5f58db2bbfb3561e282d7d63"></Sidebar>
+    <Sidebar currentTeamId={params.teamId}></Sidebar>
     <Header channelName="anomynous" />
     <Messages>
-      <ul class="message-list">
+      <ul className="message-list">
         <li></li>
         <li></li>
       </ul>
@@ -22,3 +20,5 @@ export default () => (
     <SendMessage channelName="anomynous" />
   </ApplyLayout>
 );
+
+export default ViewTeam;

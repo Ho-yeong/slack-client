@@ -17,9 +17,9 @@ export default observer(
 
     onSubmit = (response) => {
       console.log(response);
-      const { ok, errors } = response;
+      const { ok, errors, team } = response;
       if (ok) {
-        console.log(ok);
+        window.location.href = `/view-team/${team._id}`;
       } else {
         console.log(errors);
         this.setState({

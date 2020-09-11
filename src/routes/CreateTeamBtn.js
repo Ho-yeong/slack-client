@@ -6,6 +6,9 @@ const CreateTeamMutation = gql`
   mutation($name: String!) {
     createTeam(name: $name) {
       ok
+      team {
+        _id
+      }
       errors {
         path
         message

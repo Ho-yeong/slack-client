@@ -70,7 +70,7 @@ const Channels = ({ teamName, channels, users }) => (
     <TeamName>
       <div>
         <TeamNameText>{teamName}</TeamNameText>
-        <i class="fas fa-caret-down"></i>
+        <i className="fas fa-caret-down"></i>
       </div>
     </TeamName>
     <div>
