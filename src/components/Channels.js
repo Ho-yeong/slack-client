@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Icon } from "semantic-ui-react";
 
 const paddingLeft = "padding-left : 10px";
 const ChannelWrapper = styled.div`
@@ -45,6 +46,9 @@ const SideBarListItem = styled.li`
     background-color: #350d36;
   }
 `;
+const SideBarListHeader = styled.li`
+  ${paddingLeft};
+`;
 
 const Green = styled.span`
   color: #38978d;
@@ -54,18 +58,18 @@ const Green = styled.span`
 
 const Bubble = ({ on = true }) => (on ? <Green>●</Green> : <Green>○</Green>);
 
-const channel = ({ id, name }) => (
-  <SideBarListItem key={`channel-${id}`}># {name}</SideBarListItem>
+const channel = ({ _id, name }) => (
+  <SideBarListItem key={`channel-${_id}`}># {name}</SideBarListItem>
 );
 
-const user = ({ id, name }) => (
-  <SideBarListItem key={`user-${id}`}>
+const user = ({ _id, name }) => (
+  <SideBarListItem key={`user-${_id}`}>
     <Bubble />
     {name}
   </SideBarListItem>
 );
 
-const Channels = ({ teamName, channels, users }) => (
+const Channels = ({ teamName, channels, users, onAddChannelClick }) => (
   <ChannelWrapper>
     <TeamName>
       <div>
@@ -75,13 +79,17 @@ const Channels = ({ teamName, channels, users }) => (
     </TeamName>
     <div>
       <SideBarList>
-        <li>Channels</li>
+        <SideBarListHeader>
+          Channels
+          <Icon onClick={onAddChannelClick} name="add circle" />
+        </SideBarListHeader>
+
         {channels.map(channel)}
       </SideBarList>
     </div>
     <div>
       <SideBarList>
-        <li>Direct Messages</li>
+        <SideBarListHeader>Direct Messages</SideBarListHeader>
         {users.map(user)}
       </SideBarList>
     </div>
