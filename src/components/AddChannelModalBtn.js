@@ -20,26 +20,30 @@ const createChannelMutation = gql`
 const AddChannelModalBtn = (props) => {
   const err = {};
 
-  const [newCreateChannel, { error }] = useMutation(createChannelMutation, {
-    onCompleted({ createChannel }) {
-      const { ok, errors } = createChannel;
-      console.log(createChannel);
-      if (ok) {
-        // eslint-disable-next-line react/prop-types
-        //window.location.href = props.onSubmit(CreateChannel);
-      } else {
-        errors.forEach(({ path, message }) => {
-          // err[`passwordError`] = "....";
-          err[`${path}Error`] = message;
-        });
-        // eslint-disable-next-line react/prop-types
-        props.onSubmit(err);
-      }
-    },
-    onError(err) {
-      console.log(err);
-    },
-  });
+  const [newCreateChannel, { loading, error }] = useMutation(
+    createChannelMutation,
+    {
+      onCompleted({ createChannel }) {
+        const { ok, errors } = createChannel;
+        console.log(loading);
+        console.log(createChannel);
+        if (ok) {
+          // eslint-disable-next-line react/prop-types
+          props.onSubmit(createChannel);
+        } else {
+          errors.forEach(({ path, message }) => {
+            // err[`passwordError`] = "....";
+            err[`${path}Error`] = message;
+          });
+          // eslint-disable-next-line react/prop-types
+          props.onSubmit(err);
+        }
+      },
+      onError(err) {
+        console.log(err);
+      },
+    }
+  );
 
   const CreateChannel = () => {
     newCreateChannel({

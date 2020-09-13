@@ -1,62 +1,99 @@
 import React from "react";
-import { Button, Modal, Input, Form } from "semantic-ui-react";
+import { Button, Modal, Input, Form, Message } from "semantic-ui-react";
 import AddChannelModalBtn from "./AddChannelModalBtn";
 
-import { withFormik } from "formik";
+import { extendObservable } from "mobx";
+import { observer } from "mobx-react";
 
-const AddChannelModal = ({
-  channelOpen,
-  onClose,
-  values,
-  handleChange,
-  handleBlur,
-  handleSubmit,
-  isSubmitting,
-  teamId,
-}) => {
-  return (
-    <Modal open={channelOpen} onClose={onClose}>
-      <Modal.Header>Make new Channel</Modal.Header>
-      <Modal.Content>
-        <Form>
-          <Form.Field>
-            <Input
-              value={values.name}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              name="name"
-              fluid
-              placeholder="type new Channel Name"
-            />
-          </Form.Field>
-          <Form.Group widths="equal">
-            <AddChannelModalBtn
-              name={values.name}
-              onSubmit={handleSubmit}
-              teamId={teamId}
-              disabled={isSubmitting}
-            ></AddChannelModalBtn>
-            <Button
-              disabled={isSubmitting}
-              fluid
-              content="Cancel"
-              labelPosition="right"
-              icon="x"
-              onClick={onClose}
-              negative
-            />
-          </Form.Group>
-        </Form>
-      </Modal.Content>
-    </Modal>
-  );
-};
+export default observer(
+  class AddChannelModal extends React.Component {
+    constructor(props) {
+      super(props);
 
-export default withFormik({
-  mapPropsToValues: () => ({ name: "" }),
-  handleSubmit: (values, { setSubmitting }) => {
-    console.log(values);
-    console.log("submitting...");
-    setSubmitting(false);
-  },
-})(AddChannelModal);
+      extendObservable(this, {
+        name: "",
+        isSubmitting: false,
+        errors: {},
+      });
+    }
+
+    onSubmit = (response) => {
+      this.setState({
+        isSubmitting: true,
+      });
+      console.log(response);
+      const { ok, channel } = response;
+
+      if (ok) {
+        window.location.href = `/view-team/${this.props.teamId}/${channel._id}/`;
+      } else {
+        this.setState({
+          isSubmitting: false,
+        });
+        this.setState({
+          nameError: "",
+        });
+        this.errors = response;
+      }
+    };
+
+    onChange = (e) => {
+      const { name, value } = e.target;
+      this[name] = value;
+    };
+
+    render() {
+      const {
+        name,
+        errors: { nameError },
+      } = this;
+      const errorList = [];
+
+      if (nameError) {
+        errorList.push(nameError);
+      }
+      return (
+        <Modal open={this.props.channelOpen} onClose={this.props.onClose}>
+          <Modal.Header>Make new Channel</Modal.Header>
+          <Modal.Content>
+            <Form>
+              <Form.Field error={!!nameError}>
+                <Input
+                  value={name}
+                  onChange={this.onChange}
+                  name="name"
+                  fluid
+                  placeholder="type new Channel Name"
+                />
+              </Form.Field>
+              <Form.Group widths="equal">
+                <AddChannelModalBtn
+                  name={name}
+                  onSubmit={this.onSubmit}
+                  teamId={this.props.teamId}
+                  disabled={this.isSubmitting}
+                ></AddChannelModalBtn>
+                <Button
+                  disabled={this.isSubmitting}
+                  fluid
+                  content="Cancel"
+                  labelPosition="right"
+                  icon="x"
+                  onClick={this.props.onClose}
+                  negative
+                />
+              </Form.Group>
+            </Form>
+            {errorList.length ? (
+              <Message
+                error
+                header="There was some errors with your submission"
+                list={errorList}
+              />
+            ) : null}
+          </Modal.Content>
+        </Modal>
+      );
+    }
+  }
+);

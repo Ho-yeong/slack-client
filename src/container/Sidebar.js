@@ -37,14 +37,10 @@ class Sidebar extends React.Component {
     } catch (err) {}
 
     return [
-      <Teams
-        key="team-sidebar"
-        currentTeamId={currentTeamId}
-        teams={data.allTeams}
-        username={username}
-      />,
+      <Teams key="team-sidebar" teams={data.allTeams} username={username} />,
       <Channels
         key="channels-sidebar"
+        teamId={currentTeamId}
         teamName={team.name}
         channels={team.channels}
         users={[
@@ -54,10 +50,10 @@ class Sidebar extends React.Component {
         onAddChannelClick={this.handleAddChannelClick}
       />,
       <AddChannelModal
+        key="sidebar-add-channel"
         teamId={currentTeamId}
         channelOpen={this.state.openAddChannelModal}
         onClose={this.handleCloseChannelModal}
-        key="sidebar-add-channel"
       />,
     ];
   }

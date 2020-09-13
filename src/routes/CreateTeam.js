@@ -1,7 +1,8 @@
 import React from "react";
-import { extendObservable } from "mobx";
 import { Input, Container, Header, Form, Message } from "semantic-ui-react";
+import { extendObservable } from "mobx";
 import { observer } from "mobx-react";
+
 import CreateTeamBtn from "./CreateTeamBtn";
 
 export default observer(
