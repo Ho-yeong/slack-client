@@ -17,6 +17,19 @@ const createChannelMutation = gql`
   }
 `;
 
+const allTeamsQuery = gql`
+  {
+    allTeams {
+      _id
+      name
+      channels {
+        _id
+        name
+      }
+    }
+  }
+`;
+
 const AddChannelModalBtn = (props) => {
   const err = {};
 
@@ -25,6 +38,7 @@ const AddChannelModalBtn = (props) => {
     {
       onCompleted({ createChannel }) {
         const { ok, errors } = createChannel;
+
         console.log(loading);
         console.log(createChannel);
         if (ok) {
@@ -42,6 +56,11 @@ const AddChannelModalBtn = (props) => {
       onError(err) {
         console.log(err);
       },
+      refetchQueries: () => [
+        {
+          query: allTeamsQuery,
+        },
+      ],
     }
   );
 

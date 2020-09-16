@@ -1,5 +1,4 @@
 import React from "react";
-import findIndex from "lodash/findIndex";
 import decode from "jwt-decode";
 
 import Teams from "../components/Teams";
@@ -20,12 +19,7 @@ class Sidebar extends React.Component {
   };
 
   render() {
-    const { currentTeamId, data } = this.props;
-
-    const teamIdx = currentTeamId
-      ? findIndex(data.allTeams, ["_id", currentTeamId])
-      : 0;
-    const team = data.allTeams[teamIdx];
+    const { data, team } = this.props;
 
     let username = "";
 
@@ -40,7 +34,7 @@ class Sidebar extends React.Component {
       <Teams key="team-sidebar" teams={data.allTeams} username={username} />,
       <Channels
         key="channels-sidebar"
-        teamId={currentTeamId}
+        teamId={team._id}
         teamName={team.name}
         channels={team.channels}
         users={[
@@ -51,7 +45,7 @@ class Sidebar extends React.Component {
       />,
       <AddChannelModal
         key="sidebar-add-channel"
-        teamId={currentTeamId}
+        teamId={team._id}
         channelOpen={this.state.openAddChannelModal}
         onClose={this.handleCloseChannelModal}
       />,

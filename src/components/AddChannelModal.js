@@ -21,18 +21,18 @@ export default observer(
       this.setState({
         isSubmitting: true,
       });
-      console.log(response);
       const { ok, channel } = response;
-
       if (ok) {
-        window.location.href = `/view-team/${this.props.teamId}/${channel._id}/`;
+        //window.location.href = `/view-team/${this.props.teamId}/${channel._id}/`;
+        this.setState({ name: "" });
+        this.name = "";
+        this.props.onClose();
       } else {
         this.setState({
           isSubmitting: false,
-        });
-        this.setState({
           nameError: "",
         });
+
         this.errors = response;
       }
     };
