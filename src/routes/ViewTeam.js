@@ -6,6 +6,7 @@ import ApplyLayout from "../components/ApplyLayout";
 import Header from "../components/Header";
 import Messages from "../components/Messages";
 import SendMessage from "../components/SendMessage";
+import invitePeopleModal from "../components/invitePeopleModal";
 
 import Sidebar from "../container/Sidebar";
 
@@ -27,10 +28,22 @@ const ViewTeam = ({
     : 0;
   const channel = team.channels[channelIdx];
 
+  // Invite People Modal
+  let openInvitePeopleModal = false;
+  const handleInvitePeopleClick = () => {
+    openInvitePeopleModal = true;
+  };
+  const handleCloseInvitePeopleModal = () => {
+    openInvitePeopleModal = false;
+  };
+
   return (
     <ApplyLayout>
       <Sidebar currentTeamId={teamId} data={data} team={team}></Sidebar>
-      <Header channelName={channel.name} />
+      <Header
+        channelName={channel.name}
+        onInvitePeopleClick={handleInvitePeopleClick}
+      />
       <Messages channelId={channel._id}>
         <ul className="message-list">
           <li></li>
