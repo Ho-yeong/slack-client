@@ -63,7 +63,7 @@ export default observer(
                   onChange={this.onChange}
                   name="name"
                   fluid
-                  placeholder="Invite People"
+                  placeholder="User's Email"
                 />
               </Form.Field>
               <Form.Group widths="equal">

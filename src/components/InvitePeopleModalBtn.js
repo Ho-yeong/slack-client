@@ -52,7 +52,7 @@ const AddChannelModalBtn = (props) => {
     <>
       <Button
         fluid
-        content="Complete!"
+        content="Add User!"
         labelPosition="right"
         icon="checkmark"
         onClick={addTeamMember}
