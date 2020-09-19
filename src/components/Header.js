@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Header } from "semantic-ui-react";
+import { Header, Icon } from "semantic-ui-react";
 
 const HeaderWrapper = styled.div`
   grid-column: 2;
@@ -20,7 +20,7 @@ const header = ({ channelName, onInvitePeopleClick }) => (
     <Header textAlign="left">#{channelName}</Header>
     <div>
       <a href="#invite-people" onClick={onInvitePeopleClick}>
-        + Invite People
+        <Icon name="user plus" size="big" />
       </a>
     </div>
   </HeaderWrapper>

@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Modal, Input, Form, Message } from "semantic-ui-react";
-import AddChannelModalBtn from "./AddChannelModalBtn";
+import InvitePeopleModalBtn from "./InvitePeopleModalBtn";
 
 import { extendObservable } from "mobx";
 import { observer } from "mobx-react";
@@ -30,7 +30,7 @@ export default observer(
       } else {
         this.setState({
           isSubmitting: false,
-          nameError: "",
+          emailError: "",
         });
 
         this.errors = response;
@@ -45,19 +45,19 @@ export default observer(
     render() {
       const {
         name,
-        errors: { nameError },
+        errors: { emailError },
       } = this;
       const errorList = [];
 
-      if (nameError) {
-        errorList.push(nameError);
+      if (emailError) {
+        errorList.push(emailError);
       }
       return (
         <Modal open={this.props.open} onClose={this.props.onClose}>
-          <Modal.Header>Invite People</Modal.Header>
+          <Modal.Header>Invite People to the team</Modal.Header>
           <Modal.Content>
             <Form>
-              <Form.Field error={!!nameError}>
+              <Form.Field error={!!emailError}>
                 <Input
                   value={name}
                   onChange={this.onChange}
@@ -67,12 +67,12 @@ export default observer(
                 />
               </Form.Field>
               <Form.Group widths="equal">
-                <AddChannelModalBtn
-                  name={name}
+                <InvitePeopleModalBtn
+                  email={name}
                   onSubmit={this.onSubmit}
                   teamId={this.props.teamId}
                   disabled={this.isSubmitting}
-                ></AddChannelModalBtn>
+                ></InvitePeopleModalBtn>
                 <Button
                   disabled={this.isSubmitting}
                   fluid
