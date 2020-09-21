@@ -36,8 +36,8 @@ function CreateTeamBtn(props) {
         props.onSubmit(err);
       }
     },
-    onError() {
-      window.location.href = "/login";
+    onError(err) {
+      console.log(err);
     },
   });
   const CreateTeam = () => {

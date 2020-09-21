@@ -1,6 +1,8 @@
 import React from "react";
-import { Button } from "semantic-ui-react";
+import { allTeamsQuery } from "../graphql/team";
 import { gql, useMutation } from "@apollo/client";
+
+import { Button } from "semantic-ui-react";
 
 const createChannelMutation = gql`
   mutation($teamId: String!, $name: String!) {
@@ -12,19 +14,6 @@ const createChannelMutation = gql`
       errors {
         path
         message
-      }
-    }
-  }
-`;
-
-const allTeamsQuery = gql`
-  {
-    allTeams {
-      _id
-      name
-      channels {
-        _id
-        name
       }
     }
   }
