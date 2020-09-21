@@ -8,20 +8,27 @@ const HeaderWrapper = styled.div`
   height: 65px;
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   padding-left: 20px;
   font-size: 0.9rem;
   border-bottom: 1px solid rgba(var(--sk_foreground_low, 29, 28, 29), 0.13);
 `;
 
+const InviteTeamBtn = styled.div`
+  margin: 0 10px;
+  display: inline-block;
+`;
+
 const header = ({ channelName, onInvitePeopleClick }) => (
   <HeaderWrapper>
     <Header textAlign="left">#{channelName}</Header>
     <div>
-      <a href="#invite-people" onClick={onInvitePeopleClick}>
-        <Icon name="user plus" size="big" />
-      </a>
+      <InviteTeamBtn>
+        <a href="#invite-people" onClick={onInvitePeopleClick}>
+          <Icon name="user plus" size="big" />
+        </a>
+      </InviteTeamBtn>
     </div>
   </HeaderWrapper>
 );
