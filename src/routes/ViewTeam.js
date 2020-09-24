@@ -1,5 +1,5 @@
 import React from "react";
-import { gql, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import { allTeamsQuery } from "../graphql/team";
 import findIndex from "lodash/findIndex";
 
@@ -9,6 +9,7 @@ import SendMessage from "../components/SendMessage";
 
 import Sidebar from "../container/Sidebar";
 import { Redirect } from "react-router-dom";
+import { set } from "lodash";
 
 const ViewTeam = ({
   match: {
@@ -20,7 +21,6 @@ const ViewTeam = ({
   if (error) return <p>Error :( Please Login</p>;
 
   const teams = [...data.allTeams, ...data.inviteTeams];
-  console.log(teams);
   // loged in but when there is no team, redirect to create-team page
   if (!teams.length) {
     return <Redirect to="/create-team"></Redirect>;
