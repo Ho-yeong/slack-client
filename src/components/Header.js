@@ -20,16 +20,18 @@ const InviteTeamBtn = styled.div`
   display: inline-block;
 `;
 
-const header = ({ channelName, onInvitePeopleClick }) => (
+const header = ({ channelName, onInvitePeopleClick, isOwner }) => (
   <HeaderWrapper>
     <Header textAlign="left">#{channelName}</Header>
-    <div>
-      <InviteTeamBtn>
-        <a href="#invite-people" onClick={onInvitePeopleClick}>
-          <Icon name="user plus" size="big" />
-        </a>
-      </InviteTeamBtn>
-    </div>
+    {isOwner && (
+      <div>
+        <InviteTeamBtn>
+          <a href="#invite-people" onClick={onInvitePeopleClick}>
+            <Icon name="user plus" size="big" />
+          </a>
+        </InviteTeamBtn>
+      </div>
+    )}
   </HeaderWrapper>
 );
 

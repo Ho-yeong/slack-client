@@ -66,7 +66,14 @@ const user = ({ _id, name }) => (
   </SideBarListItem>
 );
 
-const Channels = ({ teamName, channels, users, onAddChannelClick, teamId }) => {
+const Channels = ({
+  teamName,
+  channels,
+  users,
+  onAddChannelClick,
+  teamId,
+  isOwner,
+}) => {
   const channel = ({ _id, name }) => (
     <SideBarListItem key={`channel-${_id}`}>
       <Link to={`/view-team/${teamId}/${_id}`}># {name}</Link>
@@ -85,7 +92,7 @@ const Channels = ({ teamName, channels, users, onAddChannelClick, teamId }) => {
         <SideBarList>
           <SideBarListHeader>
             Channels
-            <Icon onClick={onAddChannelClick} name="add circle" />
+            {isOwner && <Icon onClick={onAddChannelClick} name="add circle" />}
           </SideBarListHeader>
 
           {channels.map(channel)}

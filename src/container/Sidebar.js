@@ -36,11 +36,12 @@ class Sidebar extends React.Component {
     const { data, team, channelName } = this.props;
 
     let username = "";
-
+    let isOwner = false;
     try {
       const token = localStorage.getItem("token");
       const { user } = decode(token);
       username = user.username;
+      isOwner = user.id === team.owner._id;
       // eslint-disable-next-line
     } catch (err) {}
 
@@ -51,6 +52,7 @@ class Sidebar extends React.Component {
         teamId={team._id}
         teamName={team.name}
         channels={team.channels}
+        isOwner={isOwner}
         users={[
           { _id: 1, name: "slackbot" },
           { _id: 2, name: "user1" },
@@ -61,6 +63,7 @@ class Sidebar extends React.Component {
         key="header"
         currentTeamId={team._id}
         channelName={channelName}
+        isOwner={isOwner}
         onInvitePeopleClick={this.toggleInvitePeopleClick}
       />,
       <AddChannelModal
