@@ -21,7 +21,7 @@ export default observer(
       this.setState({
         isSubmitting: true,
       });
-      const { ok, channel } = response;
+      const { ok } = response;
       if (ok) {
         //window.location.href = `/view-team/${this.props.teamId}/${channel._id}/`;
         this.setState({ name: "" });

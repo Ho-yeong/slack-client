@@ -4,12 +4,11 @@ import { allTeamsQuery } from "../graphql/team";
 import findIndex from "lodash/findIndex";
 
 import ApplyLayout from "../components/ApplyLayout";
-import Messages from "../components/Messages";
 import SendMessage from "../components/SendMessage";
-
 import Sidebar from "../container/Sidebar";
+import MessageContainer from "../container/MessageContainer";
+
 import { Redirect } from "react-router-dom";
-import { set } from "lodash";
 
 const ViewTeam = ({
   match: {
@@ -47,15 +46,10 @@ const ViewTeam = ({
       {channel && (
         <Sidebar data={teams} team={team} channelName={channel.name}></Sidebar>
       )}
+      {channel && <MessageContainer channelId={channel._id} />}
       {channel && (
-        <Messages channelId={channel._id}>
-          <ul className="message-list">
-            <li></li>
-            <li></li>
-          </ul>
-        </Messages>
+        <SendMessage channelName={channel.name} channelId={channel._id} />
       )}
-      {channel && <SendMessage channelName={channel.name} />}
     </ApplyLayout>
   );
 };
