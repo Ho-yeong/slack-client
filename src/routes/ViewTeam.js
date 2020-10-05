@@ -7,7 +7,6 @@ import ApplyLayout from "../components/ApplyLayout";
 import SendMessage from "../components/SendMessage";
 import Sidebar from "../container/Sidebar";
 import MessageContainer from "../container/MessageContainer";
-import { MessagesQuery } from "../graphql/messages";
 
 import { Redirect } from "react-router-dom";
 
@@ -40,19 +39,6 @@ const ViewTeam = ({
     : 0;
   const channel =
     channelIdx === -1 ? team.channel[0] : team.channels[channelIdx];
-
-  // Message
-  const messageFunction = (channelId) => {
-    const { messageLoading, messageError, messageData } = useQuery(
-      MessagesQuery,
-      {
-        variables: channelId,
-      }
-    );
-    if (messageLoading) return messageLoading;
-    if (messageError) return messageError;
-    return messageData;
-  };
 
   // { channel && something} === { channel ? something ? null}
   return (

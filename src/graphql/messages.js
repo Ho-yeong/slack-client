@@ -13,4 +13,17 @@ export const MessagesQuery = gql`
   }
 `;
 
+export const MessagesQuerySubscription = gql`
+  subscription($channelId: String!) {
+    newChannelMessage(channelId: $channelId) {
+      _id
+      text
+      user {
+        username
+      }
+      createdAt
+    }
+  }
+`;
+
 export const idk = {};

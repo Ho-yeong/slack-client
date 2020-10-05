@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { Input } from "semantic-ui-react";
 
-import { MessagesQuery } from "../graphql/messages";
 import { gql, useMutation } from "@apollo/client";
 
 import { observable } from "mobx";
@@ -32,14 +31,6 @@ const useFormik = (props) => {
     onError(err) {
       console.log(err);
     },
-    refetchQueries: () => [
-      {
-        query: MessagesQuery,
-        variables: {
-          channelId: props.channelId,
-        },
-      },
-    ],
   });
 
   const Message = () => {
