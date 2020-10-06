@@ -13,15 +13,8 @@ class MessageResult extends React.Component {
     console.log("componentDidMount");
   }
 
-  setData = (data) => {
-    this.setState({
-      data,
-    });
-  };
-
   render() {
     const { data } = this.props;
-    console.log(data);
     if (data) {
       return (
         <Messages>
@@ -44,7 +37,7 @@ class MessageResult extends React.Component {
         </Messages>
       );
     } else {
-      return <p>씨발</p>;
+      return <p>no data</p>;
     }
   }
 }

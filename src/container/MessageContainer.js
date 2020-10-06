@@ -19,10 +19,12 @@ const MessageContainer = ({ channelId }) => {
           variables: { channelId },
           updateQuery: (prev, { subscriptionData }) => {
             if (!subscriptionData.data) return prev;
-
             return {
               ...prev,
-              messages: [...prev.messages, subscriptionData.newChannelMessage],
+              messages: [
+                ...prev.messages,
+                subscriptionData.data.newChannelMessage,
+              ],
             };
           },
         })
