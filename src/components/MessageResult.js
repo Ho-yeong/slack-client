@@ -5,12 +5,13 @@ import Messages from "../components/Messages";
 class MessageResult extends React.Component {
   constructor(props) {
     super(props);
-    console.log("constructor");
   }
 
   componentDidMount() {
     this.props.subscribeToNewChat();
-    console.log("componentDidMount");
+    if(this.props.subscribeToNewChat()){
+      
+    }
   }
 
   render() {

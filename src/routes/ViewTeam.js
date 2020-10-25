@@ -46,7 +46,7 @@ const ViewTeam = ({
       {channel && (
         <Sidebar data={teams} team={team} channelName={channel.name}></Sidebar>
       )}
-      {channel && <MessageContainer channelId={channel._id} />}
+      {channel && <MessageContainer channelId={channel._id}/>}
       {channel && (
         <SendMessage channelName={channel.name} channelId={channel._id} />
       )}
