@@ -22,6 +22,7 @@ export default observer(
       if (ok) {
         localStorage.setItem("token", token);
         localStorage.setItem("refreshToken", refreshToken);
+        this.props.history.push("/view-team");
       } else {
         this.setState({
           emailError: "",

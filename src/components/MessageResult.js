@@ -7,13 +7,6 @@ class MessageResult extends React.Component {
     super(props);
   }
 
-  componentDidMount() {
-    this.props.subscribeToNewChat();
-    if(this.props.subscribeToNewChat()){
-      
-    }
-  }
-
   render() {
     const { data } = this.props;
     if (data) {

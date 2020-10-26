@@ -32,7 +32,6 @@ const MessageContainer = ({ channelId }) => {
     let unsubscribe
   
     if (channelId) {
-      console.log(channelId)
       unsubscribe = subscribeToMore({
         document: MessagesQuerySubscription,
         variables:  {channelId} ,
@@ -48,10 +47,8 @@ const MessageContainer = ({ channelId }) => {
         },
       })
     }
-  
       // Unsubscribe here
-    if (unsubscribe) return () => {
-      unsubscribe()}
+    if (unsubscribe) return () => unsubscribe()
   }, [channelId, subscribeToMore])
   
 
