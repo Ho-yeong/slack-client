@@ -1,6 +1,6 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
-import { allTeamsQuery } from "../graphql/team";
+import { meQuery } from "../graphql/team";
 import findIndex from "lodash/findIndex";
 
 import ApplyLayout from "../components/ApplyLayout";
@@ -15,11 +15,12 @@ const ViewTeam = ({
     params: { teamId, channelId },
   },
 }) => {
-  const { loading, error, data } = useQuery(allTeamsQuery);
+  const { loading, error, data } = useQuery(meQuery);
   if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error :( Please Login</p>;
+  if (error) { console.log(error); return (<p>Error :( Please Login</p>)};
 
-  const teams = [...data.allTeams, ...data.inviteTeams];
+  console.log(data);
+  const { teams } = data.me;
   // loged in but when there is no team, redirect to create-team page
   if (!teams.length) {
     return <Redirect to="/create-team"></Redirect>;

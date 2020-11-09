@@ -1,5 +1,5 @@
 import React from "react";
-import { allTeamsQuery } from "../graphql/team";
+import { meQuery } from "../graphql/team";
 import { gql, useMutation } from "@apollo/client";
 
 import { Button } from "semantic-ui-react";
@@ -47,7 +47,7 @@ const AddChannelModalBtn = (props) => {
       },
       refetchQueries: () => [
         {
-          query: allTeamsQuery,
+          query: meQuery,
         },
       ],
     }

@@ -1,30 +1,21 @@
 import { gql } from "@apollo/client";
 
-export const allTeamsQuery = gql`
+export const meQuery = gql`
+{
+  me
   {
-    allTeams {
+    _id
+    username
+    teams{
       _id
-      owner {
-        _id
-      }
       name
-      channels {
-        _id
-        name
-      }
-    }
-    inviteTeams {
-      _id
-      owner {
-        _id
-      }
-      name
-      channels {
+      channels{
         _id
         name
       }
     }
   }
+}
 `;
 
 export const idk = {};
