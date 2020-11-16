@@ -20,7 +20,8 @@ export default observer(
       console.log(response);
       const { ok, errors, team } = response;
       if (ok) {
-        window.location.href = `/view-team/${team._id}`;
+        // window.location.href = `/view-team/${team._id}`;
+        this.props.history.push('/view-team');
       } else {
         console.log(errors);
         this.setState({

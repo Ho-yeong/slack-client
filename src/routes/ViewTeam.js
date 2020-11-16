@@ -20,7 +20,7 @@ const ViewTeam = ({
   if (error) { console.log(error); return (<p>Error :( Please Login</p>)};
 
   console.log(data);
-  const { teams } = data.me;
+  const { teams, username } = data.me;
   // loged in but when there is no team, redirect to create-team page
   if (!teams.length) {
     return <Redirect to="/create-team"></Redirect>;
@@ -45,7 +45,7 @@ const ViewTeam = ({
   return (
     <ApplyLayout>
       {channel && (
-        <Sidebar data={teams} team={team} channelName={channel.name}></Sidebar>
+        <Sidebar username={username} data={teams} team={team} channelName={channel.name}></Sidebar>
       )}
       {channel && <MessageContainer channelId={channel._id}/>}
       {channel && (
