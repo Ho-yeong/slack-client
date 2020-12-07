@@ -23,7 +23,7 @@ const ViewTeam = ({
   const { teams, username } = data.me;
   // loged in but when there is no team, redirect to create-team page
   if (!teams.length) {
-    return <Redirect to="/create-team"></Redirect>;
+    return <Redirect to="/create-team" />;
   }
 
   // '!!' makes string to boolean
@@ -32,7 +32,7 @@ const ViewTeam = ({
 
   // if wrong teamid is written
   if (!team) {
-    return <Redirect to="/create-team"></Redirect>;
+    return <Redirect to="/create-team" />;
   }
 
   const channelIdx = !!channelId
@@ -45,7 +45,7 @@ const ViewTeam = ({
   return (
     <ApplyLayout>
       {channel && (
-        <Sidebar username={username} data={teams} team={team} channelName={channel.name}></Sidebar>
+        <Sidebar username={username} data={teams} team={team} channelName={channel.name} />
       )}
       {channel && <MessageContainer channelId={channel._id}/>}
       {channel && (

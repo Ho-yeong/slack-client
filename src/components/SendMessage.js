@@ -96,7 +96,7 @@ function SendMessage({ channelName, channelId }) {
         fluid
         placeholder={`Message  #${channelName}`}
         {...getFieldProps("message")}
-      ></Input>
+      />
     </SendMessageWrapper>
   ));
 }
